@@ -1,27 +1,31 @@
-n = int(input())
-sequence = []
-stack = []
-result = []
-current = 1
+import sys
 
-for _ in range(n):
-    x = int(input())
-    sequence.append(x)
-    
-for num in sequence:
-    while current<=num:
-        stack.append(current)
-        result.append('+')
-        current+=1
-    
-    if stack[-1] == num:
-        result.append('-')
+input=sys.stdin.readline
+
+N=int(input())
+arr=[int(input().strip()) for _ in range(N)]
+cnt=1
+stack=[]
+answer=[]
+
+for x in arr:
+    if cnt<x:
+        while cnt<=x:
+            stack.append(cnt)
+            answer.append('+')
+            cnt+=1
+    elif cnt==x:
+        stack.append(cnt)
+        answer.append('+')
+        cnt+=1
+    if stack[-1]==x:
         stack.pop()
-    
+        answer.append('-')
     else:
         print("NO")
         exit(0)
-    
 
-for i in range(len(result)):
-    print(result[i])
+for x in answer:
+    print(x)
+
+
